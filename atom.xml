@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Simyin - Company Blog]]></title>
+  <link href="http://simyin.github.com/atom.xml" rel="self"/>
+  <link href="http://simyin.github.com/"/>
+  <updated>2012-09-11T23:33:12-04:00</updated>
+  <id>http://simyin.github.com/</id>
+  <author>
+    <name><![CDATA[The Simyin Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[test]]></title>
+    <link href="http://simyin.github.com/blog/2012/09/11/test/"/>
+    <updated>2012-09-11T23:33:00-04:00</updated>
+    <id>http://simyin.github.com/blog/2012/09/11/test</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
