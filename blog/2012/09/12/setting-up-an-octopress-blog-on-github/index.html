@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Simyin - Company Blog</title>
+  <title>Setting Up An Octopress Blog on GitHub - Simyin - Company Blog</title>
   <meta name="author" content="The Simyin Team">
 
   
-  <meta name="description" content="This post assumes that the correct ssh public key is deployed on Github and that you have your private ssh key properly added to your .ssh folder.
-We &hellip;">
+  <meta name="description" content="We&#8217;ve decided to go with GitHub and Jekyll, using Octopress for the backend of our company blog.
+Jekyll is a simple, blog aware, static site &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ We &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://simyin.github.com">
+  <link rel="canonical" href="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -90,114 +90,13 @@ We &hellip;">
 </nav>
   <div class="container">
     <div class="row-fluid">
-      <div class="span9">
-  
-  
-  
-    <article>
       
+<article class="hentry span9" role="article">
+
+  
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/">How to Use Octopress With Multiple Users or on Multiple Machines</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-14T17:11:00-04:00" pubdate data-updated="true">Sep 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>This post assumes that the correct ssh public key is deployed on Github and that you have your private ssh key properly added to your .ssh folder.
-We also assume that a <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a> blog has already been created following the steps in our <a href="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">previous post</a></em>
-<a href="https://help.github.com/categories/56/articles">This page</a> has good information about troubleshooting and generating ssh keys.
-Test and troubleshoot, if needed your authentication following the steps <a href="https://help.github.com/articles/error-permission-denied-publickey">here</a>, before proceeding.</p>
-
-<p>First, you will have to navigate to a folder where you would like to keep your blog posts and issue the following command:</p>
-
-<p><code>git clone git@github.com:simyin/simyin.github.com.git simyin_blog</code> where you would replace <code>simyin_blog</code> with the name of your own blog and the github repository url with your own github url.</p>
-
-<p>Now, navigate to the newly created folder: <code>cd simyin_blog/</code> and switch to the source branch of the blog repo: <code>git checkout source</code>.
-We need to specify the username and email that git will be using for commits:</p>
-
-<blockquote><pre><code>~/simyin_blog$ git config user.name "Ivan Alagenchev" 
-~/simyin_blog$ git config user.email "ivan@simy.in"
-</code></pre></blockquote>
-
-<p>You can see your changes: <code>~/simyin_blog/$ vi .git/config</code></p>
-
-<p>Create the <code>_deploy folder</code> which will serve as the target folder for the generate rake task: <code>mkdir _deploy</code>.
-Your folder structure should represent something similar to:</p>
-
-<pre><code>   parent
-      |
-my_blog_name
-      |
-  _deploy
-</code></pre>
-
-<p>Navigate to <em>deploy: <code>cd _deploy</code> and initialize a new git repository in the </em>deploy folder:</p>
-
-<blockquote><pre><code>git init
-Initialized empty Git repository in /parent/simyin_blog/_deploy/.git/
-</code></pre></blockquote>
-
-<p>Now execute: <code>git remote add origin git@github.com:simyin/simyin.github.com.git</code>. This adds a new remote branch, which will be named origin for short from now on and it will be pointing to the github repository, which you provided.
-Next we&#8217;ll do <code>git pull origin master</code> to pull all contents of the remote branch named origin (the one we added in the previous step) and associate it with a local branch named master.</p>
-
-<p>We need to specify the username and email that git will be using for commits for this branch too:</p>
-
-<blockquote><pre><code>~/simyin_blog/_deploy$ git config user.name "Ivan Alagenchev" 
-~/simyin_blog/_deploy$ git config user.email "ivan@simy.in"
-</code></pre></blockquote>
-
-<p>You can see your changes: <code>~/simyin_blog/_deploy$ vi .git/config</code></p>
-
-<p>Now we can go to the parent directory <code>cd ..</code> and create posts as usual: ~/simyin_blog$ rake new_post[&#8220;post title&#8221;], which we can now edit:</p>
-
-<p><code>~/simyin_blog$ gedit source/_posts/date-title.markdown</code></p>
-
-<p>Make sure to fill in the &#8220;author:&#8221; field in the <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">yaml front matter</a> to associate posts with their authors.
-You can also make a draft post by specifying <code>published: false</code> in the yaml front matter and you can preview your post by running <code>rake preview</code> from the command line and navigating to <code>localhost:4000</code>.</p>
-
-<p>Rake preview has a file listener, which detects any changes that are made to files, so you don&#8217;t have to rerun the command every time you make changes to your post. Refreshing your browser window will display the new changes.</p>
-
-<p>Once you are finished with your blog post, you can generate the post using <code>rake generate</code> and deploy using <code>rake deploy</code>, or combine the steps with <code>rake gen_deploy</code>.</p>
-
-<p>Do not forget to commit your post to github after you make your changes:</p>
-
-<blockquote><pre><code>git add .
-git commit -m "message"
-git push
-</code></pre></blockquote>
-
-<p>This will make sure that all your posts are nicely backed up - one of the biggest advantages of using Github and Jekyll.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">Setting Up an Octopress Blog on GitHub</a></h1>
+      <h1 class="entry-title">Setting Up an Octopress Blog on GitHub</h1>
     
     
       <p class="meta">
@@ -220,7 +119,7 @@ git push
   </header>
 
 
-  <div class="entry-content"><p>We&#8217;ve decided to go with GitHub and <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a>, using <a href="http://octopress.org/">Octopress</a> for the backend of our company blog.
+<div class="entry-content"><p>We&#8217;ve decided to go with GitHub and <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a>, using <a href="http://octopress.org/">Octopress</a> for the backend of our company blog.
 Jekyll is a simple, blog aware, static site generator. Octopress is a framework for Jekyll that adds some rake scripts and themes that make getting started with Jekyll faster and easier.</p>
 
 <p>There were several factors that pushed us towards this decision as opposed to using <a href="http://wordpress.com/">wordpress</a>. I will list some of the advantages and disadvantages of each. <a href="#setup">Click Here</a>, if you want to skip this part and go straight to the setup instructions.</p>
@@ -304,18 +203,61 @@ fatal: The remote end hung up unexpectedly
 
 <p>Congratulations! Now, you are ready to start using your Jekyll blog. You can also take a look at some available Octopress themes <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes/">here</a></p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Ivan Alagenchev</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2012-09-12T00:49:00-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+      
+
+<span class="categories">
   
-  <ul class="pager">
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
     
-    <li><a href="/blog/archives">Blog Archives</a></li>
-    
-  </ul>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/" data-via="simyinco" data-counturl="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    
+    <ul class="pager">
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/"
+        title="Next Post: How to Use Octopress With Multiple Users or on Multiple Machines">How to Use Octopress With Multiple Users or on Multiple Machines
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
 <aside class="sidebar-nav span3">
   
     <section class="well">
@@ -337,7 +279,7 @@ fatal: The remote end hung up unexpectedly
 <section class="well">
   <ul id="tweets" class="nav">
     <li class="nav-header">Latest Tweets</li>
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -356,6 +298,7 @@ fatal: The remote end hung up unexpectedly
 
   
 </aside>
+
 
     </div>
   </div>
