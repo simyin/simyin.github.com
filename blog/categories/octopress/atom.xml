@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Simyin - Company Blog]]></title>
+  <link href="http://simyin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://simyin.github.com/"/>
+  <updated>2012-09-14T17:57:27-04:00</updated>
+  <id>http://simyin.github.com/</id>
+  <author>
+    <name><![CDATA[The Simyin Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Use Octopress With Multiple Users or on Multiple Machines]]></title>
+    <link href="http://simyin.github.com/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/"/>
+    <updated>2012-09-14T17:11:00-04:00</updated>
+    <id>http://simyin.github.com/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines</id>
+    <content type="html"><![CDATA[<p><em>This post assumes that the correct ssh public key is deployed on Github and that you have your private ssh key properly added to your .ssh folder.
+We also assume that a <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a> blog has already been created following the steps in our <a href="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">previous post</a></em>
+<a href="https://help.github.com/categories/56/articles">This page</a> has good information about troubleshooting and generating ssh keys.
+Test and troubleshoot, if needed your authentication following the steps <a href="https://help.github.com/articles/error-permission-denied-publickey">here</a>, before proceeding.</p>
+
+<p>First, you will have to navigate to a folder where you would like to keep your blog posts and issue the following command:</p>
+
+<p><code>git clone git@github.com:simyin/simyin.github.com.git simyin_blog</code> where you would replace <code>simyin_blog</code> with the name of your own blog and the github repository url with your own github url.</p>
+
+<p>Now, navigate to the newly created folder: <code>cd simyin_blog/</code> and switch to the source branch of the blog repo: <code>git checkout source</code>.
+We need to specify the username and email that git will be using for commits:</p>
+
+<blockquote><pre><code>~/simyin_blog$ git config user.name "Ivan Alagenchev" 
+~/simyin_blog$ git config user.email "ivan@simy.in"
+</code></pre></blockquote>
+
+<p>You can see your changes: <code>~/simyin_blog/$ vi .git/config</code></p>
+
+<p>Create the <code>_deploy folder</code> which will serve as the target folder for the generate rake task: <code>mkdir _deploy</code>.
+Your folder structure should represent something similar to:</p>
+
+<pre><code>   parent
+      |
+my_blog_name
+      |
+  _deploy
+</code></pre>
+
+<p>Navigate to <em>deploy: <code>cd _deploy</code> and initialize a new git repository in the </em>deploy folder:</p>
+
+<blockquote><pre><code>git init
+Initialized empty Git repository in /parent/simyin_blog/_deploy/.git/
+</code></pre></blockquote>
+
+<p>Now execute: <code>git remote add origin git@github.com:simyin/simyin.github.com.git</code>. This adds a new remote branch, which will be named origin for short from now on and it will be pointing to the github repository, which you provided.
+Next we'll do <code>git pull origin master</code> to pull all contents of the remote branch named origin (the one we added in the previous step) and associate it with a local branch named master.</p>
+
+<p>We need to specify the username and email that git will be using for commits for this branch too:</p>
+
+<blockquote><pre><code>~/simyin_blog/_deploy$ git config user.name "Ivan Alagenchev" 
+~/simyin_blog/_deploy$ git config user.email "ivan@simy.in"
+</code></pre></blockquote>
+
+<p>You can see your changes: <code>~/simyin_blog/_deploy$ vi .git/config</code></p>
+
+<p>Now we can go to the parent directory <code>cd ..</code> and create posts as usual: ~/simyin_blog$ rake new_post["post title"], which we can now edit:</p>
+
+<p><code>~/simyin_blog$ gedit source/_posts/date-title.markdown</code></p>
+
+<p>Make sure to fill in the "author:" field in the <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">yaml front matter</a> to associate posts with their authors.
+You can also make a draft post by specifying <code>published: false</code> in the yaml front matter and you can preview your post by running <code>rake preview</code> from the command line and navigating to <code>localhost:4000</code>.</p>
+
+<p>Rake preview has a file listener, which detects any changes that are made to files, so you don't have to rerun the command every time you make changes to your post. Refreshing your browser window will display the new changes.</p>
+
+<p>Once you are finished with your blog post, you can generate the post using <code>rake generate</code> and deploy using <code>rake deploy</code>, or combine the steps with <code>rake gen_deploy</code>.</p>
+
+<p>Do not forget to commit your post to github after you make your changes:</p>
+
+<blockquote><pre><code>git add .
+git commit -m "message"
+git push
+</code></pre></blockquote>
+
+<p>This will make sure that all your posts are nicely backed up - one of the biggest advantages of using Github and Jekyll.</p>
+]]></content>
+  </entry>
+  
+</feed>
