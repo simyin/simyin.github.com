@@ -3,6 +3,7 @@ layout: post
 title: "Setting Up An Octopress Blog on GitHub"
 date: 2012-09-12 00:49
 comments: true
+published: false
 categories: 
 - octopress
 author: Ivan Alagenchev
