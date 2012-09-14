@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Simyin - Company Blog]]></title>
   <link href="http://simyin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://simyin.github.com/"/>
-  <updated>2012-09-14T18:03:37-04:00</updated>
+  <updated>2012-09-14T19:33:48-04:00</updated>
   <id>http://simyin.github.com/</id>
   <author>
     <name><![CDATA[The Simyin Team]]></name>
@@ -19,8 +19,9 @@
     <updated>2012-09-14T17:11:00-04:00</updated>
     <id>http://simyin.github.com/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines</id>
     <content type="html"><![CDATA[<p><em>This post assumes that the correct ssh public key is deployed on Github and that you have your private ssh key properly added to your .ssh folder.
-We also assume that a <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a> blog has already been created following the steps in our <a href="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">previous post</a></em>
-<a href="https://help.github.com/categories/56/articles">This page</a> has good information about troubleshooting and generating ssh keys.
+We also assume that a <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a> blog has already been created following the steps in our <a href="http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">previous post</a></em>.</p>
+
+<p><a href="https://help.github.com/categories/56/articles">This page</a> has good information about troubleshooting and generating ssh keys.
 Test and troubleshoot, if needed your authentication following the steps <a href="https://help.github.com/articles/error-permission-denied-publickey">here</a>, before proceeding.</p>
 
 <p>First, you will have to navigate to a folder where you would like to keep your blog posts and issue the following command:</p>
