@@ -6,7 +6,7 @@ comments: true
 categories: 
 - Octopress
 - Jekyll
-published: false
+published: true
 author: Ivan Alagenchev
 ---
 
@@ -41,9 +41,8 @@ Navigate to _deploy: `cd _deploy` and initialize a new git repository in the _de
     git init
     Initialized empty Git repository in /parent/simyin_blog/_deploy/.git/
     
-Now execute: `git remote add origin git@github.com:simyin/simyin.github.com.git`.
-This adds a new remote branch, which will be named origin for short from now on and it will be pointing to the github repository, which you provided.
-Next we'll do `git pull origin master` - this pulls all contents of the remote branch named origin (the one we added in the previous step) and associate it with a local branch named master.
+Now execute: `git remote add origin git@github.com:simyin/simyin.github.com.git`. This adds a new remote branch, which will be named origin for short from now on and it will be pointing to the github repository, which you provided.
+Next we'll do `git pull origin master` to pull all contents of the remote branch named origin (the one we added in the previous step) and associate it with a local branch named master.
 
 We need to specify the username and email that git will be using for commits for this branch too: 
 
@@ -57,10 +56,12 @@ Now we can go to the parent directory `cd ..` and create posts as usual: ~/simyi
 
 `~/simyin_blog$ gedit source/_posts/date-title.markdown`
 
-Make sure to fill in the "author:" field in the [yaml front matter](https://github.com/mojombo/jekyll/wiki/yaml-front-matter). This associates posts with their authors. 
-You can also make a draft post by specifying `published: false` in the yaml front matter and you can preview your post by running `rake preview` from the command line and navigating to `localhost:4000`
+Make sure to fill in the "author:" field in the [yaml front matter](https://github.com/mojombo/jekyll/wiki/yaml-front-matter) to associate posts with their authors. 
+You can also make a draft post by specifying `published: false` in the yaml front matter and you can preview your post by running `rake preview` from the command line and navigating to `localhost:4000`.
+
 Rake preview has a file listener, which detects any changes that are made to files, so you don't have to rerun the command every time you make changes to your post. Refreshing your browser window will display the new changes.
-Once you are finished with your blog post, you can generate the post using `rake generate` and deploy using `rake deploy`, or combine the steps with `rake gen_deploy`
+
+Once you are finished with your blog post, you can generate the post using `rake generate` and deploy using `rake deploy`, or combine the steps with `rake gen_deploy`.
 
 Do not forget to commit your post to github after you make your changes: 
 >
