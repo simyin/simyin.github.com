@@ -64,11 +64,14 @@ Rake preview has a file listener, which detects any changes that are made to fil
 
 Once you are finished with your blog post, you can generate the post using `rake generate` and deploy using `rake deploy`, or combine the steps with `rake gen_deploy`.
 
-Do not forget to commit your post to github after you make your changes: 
+Do not forget to commit your post to github after you make your changes. Rake deploy commits the blog automatically, but you also want to commit your markdown markup. 
+
+Inside your blogs main folder, simyin_blog in our example, run the following commands:
+
 >
     git add .
     git commit -m "message"
-    git push
+    git push origin source
     
 This will make sure that all your posts are nicely backed up - one of the biggest advantages of using Github and Jekyll.
 
