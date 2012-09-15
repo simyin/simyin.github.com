@@ -178,11 +178,13 @@ You can also make a draft post by specifying <code>published: false</code> in th
 
 <p>Once you are finished with your blog post, you can generate the post using <code>rake generate</code> and deploy using <code>rake deploy</code>, or combine the steps with <code>rake gen_deploy</code>.</p>
 
-<p>Do not forget to commit your post to github after you make your changes:</p>
+<p>Do not forget to commit your post to github after you make your changes. Rake deploy commits the blog automatically, but you also want to commit your markdown markup.</p>
+
+<p>Inside your blogs main folder, simyin_blog in our example, run the following commands:</p>
 
 <blockquote><pre><code>git add .
 git commit -m "message"
-git push
+git push origin source
 </code></pre></blockquote>
 
 <p>This will make sure that all your posts are nicely backed up - one of the biggest advantages of using Github and Jekyll.</p>
