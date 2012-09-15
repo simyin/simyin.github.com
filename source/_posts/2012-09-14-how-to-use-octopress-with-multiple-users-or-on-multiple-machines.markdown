@@ -11,7 +11,8 @@ author: Ivan Alagenchev
 ---
 
 *This post assumes that the correct ssh public key is deployed on Github and that you have your private ssh key properly added to your .ssh folder.
-We also assume that a [Jekyll](https://github.com/mojombo/jekyll/wiki) blog has already been created following the steps in our [previous post](http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/)*
+We also assume that a [Jekyll](https://github.com/mojombo/jekyll/wiki) blog has already been created following the steps in our [previous post](http://simyin.github.com/blog/2012/09/12/setting-up-an-octopress-blog-on-github/)*.
+
 [This page](https://help.github.com/categories/56/articles) has good information about troubleshooting and generating ssh keys.
 Test and troubleshoot, if needed your authentication following the steps [here](https://help.github.com/articles/error-permission-denied-publickey), before proceeding.
 
