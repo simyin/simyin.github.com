@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | Simyin - Company Blog]]></title>
+  <link href="http://simyin.github.com/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://simyin.github.com/"/>
+  <updated>2012-10-05T14:08:01-04:00</updated>
+  <id>http://simyin.github.com/</id>
+  <author>
+    <name><![CDATA[The Simyin Team]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Gnome Keyring Bug Mismanages SSH Keys]]></title>
+    <link href="http://simyin.github.com/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/"/>
+    <updated>2012-10-05T13:58:00-04:00</updated>
+    <id>http://simyin.github.com/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys</id>
+    <content type="html"><![CDATA[<p>I use several ssh keys to connect to git on the same machine. I have my personal github account, the company github account and also a separate git account for an internal company repository.
+We manage all account authentication via ssh RSA keys and naturally they all reside in my ~/.ssh folder. Today, I was trying to make a push to github from an account that I hadn't used for a while
+and github reported a "Permission Denied" error. I noticed that git was trying to push with the wrong user account. I thought to myself "Not a biggie, I'll just temporarily remove they keys that I don't need. That's usually done executing <code>ssh-add -d \path\to\key</code> to remove the key one doesn't want to use anymore. However, I was completely caught by surprise, <code>ssh-add -l</code> would still show the same keys listed without any changes.</p>
+
+<p>After a bit of searching, I found the following <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=472477">"bug reported on debian"</a>. Apparently this is a known, though not actively worked on, bug in gnome-keyring. To work around the issue move all your keys from <code>~\.ssh</code> to another folder and open seahorse (keyring management tool) and remove all your unneeded keys from it. Your <code>ssh-add -l</code> should report the correct keys from now on and your <code>git push</code> should succeed.</p>
+]]></content>
+  </entry>
+  
+</feed>

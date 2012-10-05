@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Grails Deletes plugin-classes on grails clean - Simyin - Company Blog</title>
+  <title>Gnome Keyring Bug Mismanages SSH Keys - Simyin - Company Blog</title>
   <meta name="author" content="The Simyin Team">
 
   
-  <meta name="description" content="Today Grails gave me the following error: Description Resource Path Location Type
-The container 'Grails Dependencies' references non existing library &hellip;">
+  <meta name="description" content="I use several ssh keys to connect to git on the same machine. I have my personal github account, the company github account and also a separate git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ The container 'Grails Dependencies' references non existing library &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean">
+  <link rel="canonical" href="http://simyin.github.com/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -96,7 +95,7 @@ The container 'Grails Dependencies' references non existing library &hellip;">
   
   <header class="page-header">
     
-      <h1 class="entry-title">Grails Deletes Plugin-classes on Grails Clean</h1>
+      <h1 class="entry-title">Gnome Keyring Bug Mismanages SSH Keys</h1>
     
     
       <p class="meta">
@@ -112,32 +111,18 @@ The container 'Grails Dependencies' references non existing library &hellip;">
   
 
 
-<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+<time datetime="2012-10-05T13:58:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Today <a href="grails.org">Grails</a> gave me the following error:</p>
+<div class="entry-content"><p>I use several ssh keys to connect to git on the same machine. I have my personal github account, the company github account and also a separate git account for an internal company repository.
+We manage all account authentication via ssh RSA keys and naturally they all reside in my ~/.ssh folder. Today, I was trying to make a push to github from an account that I hadn&#8217;t used for a while
+and github reported a &#8220;Permission Denied&#8221; error. I noticed that git was trying to push with the wrong user account. I thought to myself &#8220;Not a biggie, I&#8217;ll just temporarily remove they keys that I don&#8217;t need. That&#8217;s usually done executing <code>ssh-add -d \path\to\key</code> to remove the key one doesn&#8217;t want to use anymore. However, I was completely caught by surprise, <code>ssh-add -l</code> would still show the same keys listed without any changes.</p>
 
-<blockquote><pre><code>Description Resource    Path    Location    Type
-The container 'Grails Dependencies' references non existing library '/home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes'
-The project cannot be built until build path errors are resolved    com.vpundit.www     Unknown Java Problem
-</code></pre></blockquote>
-
-<p>I didn&#8217;t know what was causing the problem at first, but I went to the folder in the error message and created the plugin-classes folder,
-<code>mkdir /home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes</code>. The problem disappeared, however it was back again when I did <code>grails clean</code>.
-Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
-
-<p>Here is how to fix the problem:</p>
-
-<p>Navigate to your <code>GRAILS_HOME</code> directory and edit the <code>GRAILS_HOME/scripts/_GrailsClean.groovy</code> script. Comment the following line:</p>
-
-<blockquote><pre><code>ant.delete(dir:pluginClassesDirPath, failonerror:false)
-</code></pre></blockquote>
-
-<p>Voila! Now you just need to recreate the plugin-classes folder again and you are set.</p>
+<p>After a bit of searching, I found the following <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=472477">&#8220;bug reported on debian&#8221;</a>. Apparently this is a known, though not actively worked on, bug in gnome-keyring. To work around the issue move all your keys from <code>~\.ssh</code> to another folder and open seahorse (keyring management tool) and remove all your unneeded keys from it. Your <code>ssh-add -l</code> should report the correct keys from now on and your <code>git push</code> should succeed.</p>
 </div>
 
 
@@ -160,12 +145,12 @@ Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
   
 
 
-<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+<time datetime="2012-10-05T13:58:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/errors/'>Errors</a>, <a class='category' href='/blog/categories/grails/'>Grails</a>
+    <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/gnome/'>gnome</a>, <a class='category' href='/blog/categories/seahorse/'>seahorse</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a>
   
 </span>
 
@@ -174,7 +159,7 @@ Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" data-via="simyinco" data-counturl="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://simyin.github.com/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/" data-via="simyinco" data-counturl="http://simyin.github.com/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/" >Tweet</a>
   
   
   
@@ -185,14 +170,10 @@ Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/" title="Previous Post:
-        How to Use Octopress With Multiple Users or on Multiple Machines">&laquo; How to Use Octopress With Multiple Users or on Multiple Machines</a></li>
+        href="/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" title="Previous Post:
+        Grails Deletes plugin-classes on grails clean">&laquo; Grails Deletes plugin-classes on grails clean</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/"
-        title="Next Post: Gnome Keyring Bug Mismanages SSH Keys">Gnome Keyring Bug Mismanages SSH Keys
-        &raquo;</a></li>
       
     </ul>
   </footer>

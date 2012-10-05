@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Grails Deletes plugin-classes on grails clean - Simyin - Company Blog</title>
+  <title>Category: seahorse - Simyin - Company Blog</title>
   <meta name="author" content="The Simyin Team">
 
   
-  <meta name="description" content="Today Grails gave me the following error: Description Resource Path Location Type
-The container 'Grails Dependencies' references non existing library &hellip;">
+  <meta name="description" content="Category: seahorse">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ The container 'Grails Dependencies' references non existing library &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean">
+  <link rel="canonical" href="http://simyin.github.comblog/categories/seahorse">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -91,111 +90,38 @@ The container 'Grails Dependencies' references non existing library &hellip;">
   <div class="container">
     <div class="row-fluid">
       
-<article class="hentry span9" role="article">
+<article role="article" class="span9">
 
   
   <header class="page-header">
-    
-      <h1 class="entry-title">Grails Deletes Plugin-classes on Grails Clean</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Seahorse</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>Today <a href="grails.org">Grails</a> gave me the following error:</p>
 
-<blockquote><pre><code>Description Resource    Path    Location    Type
-The container 'Grails Dependencies' references non existing library '/home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes'
-The project cannot be built until build path errors are resolved    com.vpundit.www     Unknown Java Problem
-</code></pre></blockquote>
+  
+  <h1>2012</h1>
 
-<p>I didn&#8217;t know what was causing the problem at first, but I went to the folder in the error message and created the plugin-classes folder,
-<code>mkdir /home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes</code>. The problem disappeared, however it was back again when I did <code>grails clean</code>.
-Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
+<article>
+  <div class="well">
 
-<p>Here is how to fix the problem:</p>
+<h2><a href="/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/">Gnome Keyring Bug Mismanages SSH Keys</a></h2>
+<time datetime="2012-10-05T13:58:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>05</span> <span class='year'>2012</span></time>
 
-<p>Navigate to your <code>GRAILS_HOME</code> directory and edit the <code>GRAILS_HOME/scripts/_GrailsClean.groovy</code> script. Comment the following line:</p>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/gnome/'>gnome</a>, <a class='category' href='/blog/categories/seahorse/'>seahorse</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a></span>
+</footer>
 
-<blockquote><pre><code>ant.delete(dir:pluginClassesDirPath, failonerror:false)
-</code></pre></blockquote>
-
-<p>Voila! Now you just need to recreate the plugin-classes folder again and you are set.</p>
 </div>
 
+</article>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Ivan Alagenchev</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/errors/'>Errors</a>, <a class='category' href='/blog/categories/grails/'>Grails</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" data-via="simyinco" data-counturl="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" >Tweet</a>
-  
-  
-  
 </div>
 
-    
-    
-    <ul class="pager">
-      
-      <li class="previous"><a class="basic-alignment left"
-        href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/" title="Previous Post:
-        How to Use Octopress With Multiple Users or on Multiple Machines">&laquo; How to Use Octopress With Multiple Users or on Multiple Machines</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/blog/2012/10/05/gnome-keyring-bug-mismanages-ssh-keys/"
-        title="Next Post: Gnome Keyring Bug Mismanages SSH Keys">Gnome Keyring Bug Mismanages SSH Keys
-        &raquo;</a></li>
-      
-    </ul>
-  </footer>
+  
 </article>
 
 <aside class="sidebar-nav span3">
