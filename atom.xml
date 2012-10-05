@@ -4,7 +4,7 @@
   <title><![CDATA[Simyin - Company Blog]]></title>
   <link href="http://simyin.github.com/atom.xml" rel="self"/>
   <link href="http://simyin.github.com/"/>
-  <updated>2012-09-14T21:43:56-04:00</updated>
+  <updated>2012-10-05T13:16:23-04:00</updated>
   <id>http://simyin.github.com/</id>
   <author>
     <name><![CDATA[The Simyin Team]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Grails Deletes plugin-classes on grails clean]]></title>
+    <link href="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/"/>
+    <updated>2012-10-05T13:03:00-04:00</updated>
+    <id>http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean</id>
+    <content type="html"><![CDATA[<p>Today <a href="grails.org">Grails</a> gave me the following error:</p>
+
+<blockquote><pre><code>Description Resource    Path    Location    Type
+The container 'Grails Dependencies' references non existing library '/home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes'
+The project cannot be built until build path errors are resolved    com.vpundit.www     Unknown Java Problem
+</code></pre></blockquote>
+
+<p>I didn&#8217;t know what was causing the problem at first, but I went to the folder in the error message and created the plugin-classes folder,
+<code>mkdir /home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes</code>. The problem disappeared, however it was back again when I did <code>grails clean</code>.
+Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
+
+<p>Here is how to fix the problem:</p>
+
+<p>Navigate to your <code>GRAILS_HOME</code> directory and edit the <code>GRAILS_HOME/scripts/_GrailsClean.groovy</code> script. Comment the following line:</p>
+
+<blockquote><pre><code>ant.delete(dir:pluginClassesDirPath, failonerror:false)
+</code></pre></blockquote>
+
+<p>Voila! Now you just need to recreate the plugin-classes folder again and you are set.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Use Octopress With Multiple Users or on Multiple Machines]]></title>

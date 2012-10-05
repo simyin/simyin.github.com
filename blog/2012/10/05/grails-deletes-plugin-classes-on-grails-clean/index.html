@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Simyin - Company Blog</title>
+  <title>Grails Deletes plugin-classes on grails clean - Simyin - Company Blog</title>
   <meta name="author" content="The Simyin Team">
 
   
-  <meta name="description" content="Blog Archive 2012 Grails Deletes plugin-classes on grails clean
-Oct 05 2012 posted in Errors, Grails How to Use Octopress With Multiple Users or on &hellip;">
+  <meta name="description" content="Today Grails gave me the following error: Description Resource Path Location Type
+The container 'Grails Dependencies' references non existing library &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ Oct 05 2012 posted in Errors, Grails How to Use Octopress With Multiple Users or
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://simyin.github.com/blog/archives">
+  <link rel="canonical" href="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -91,68 +91,107 @@ Oct 05 2012 posted in Errors, Grails How to Use Octopress With Multiple Users or
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span9" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Grails Deletes Plugin-classes on Grails Clean</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  
 
 
-  
-  <h1>2012</h1>
+<div class="entry-content"><p>Today <a href="grails.org">Grails</a> gave me the following error:</p>
 
-<article>
-  <div class="well">
+<blockquote><pre><code>Description Resource    Path    Location    Type
+The container 'Grails Dependencies' references non existing library '/home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes'
+The project cannot be built until build path errors are resolved    com.vpundit.www     Unknown Java Problem
+</code></pre></blockquote>
 
-<h2><a href="/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/">Grails Deletes plugin-classes on grails clean</a></h2>
-<time datetime="2012-10-05T13:03:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>05</span> <span class='year'>2012</span></time>
+<p>I didn&#8217;t know what was causing the problem at first, but I went to the folder in the error message and created the plugin-classes folder,
+<code>mkdir /home/alagenchev/.grails/2.1.0/projects/com.vpundit.www/plugin-classes</code>. The problem disappeared, however it was back again when I did <code>grails clean</code>.
+Obviously <code>grails clean</code> was deleting my plugin-classes folder.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/errors/'>Errors</a>, <a class='category' href='/blog/categories/grails/'>Grails</a></span>
-</footer>
+<p>Here is how to fix the problem:</p>
 
+<p>Navigate to your <code>GRAILS_HOME</code> directory and edit the <code>GRAILS_HOME/scripts/_GrailsClean.groovy</code> script. Comment the following line:</p>
+
+<blockquote><pre><code>ant.delete(dir:pluginClassesDirPath, failonerror:false)
+</code></pre></blockquote>
+
+<p>Voila! Now you just need to recreate the plugin-classes folder again and you are set.</p>
 </div>
 
-</article>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ivan Alagenchev</span></span>
+
+      
 
 
 
-<article>
-  <div class="well">
-
-<h2><a href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/">How to Use Octopress With Multiple Users or on Multiple Machines</a></h2>
-<time datetime="2012-09-14T17:11:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>14</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/jekyll/'>Jekyll</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a></span>
-</footer>
-
-</div>
-
-</article>
 
 
 
-<article>
-  <div class="well">
-
-<h2><a href="/blog/2012/09/12/setting-up-an-octopress-blog-on-github/">Setting Up An Octopress Blog on GitHub</a></h2>
-<time datetime="2012-09-12T00:49:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>12</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
-
-</div>
-
-</article>
 
 
   
+
+
+<time datetime="2012-10-05T13:03:00-04:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/errors/'>Errors</a>, <a class='category' href='/blog/categories/grails/'>Grails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" data-via="simyinco" data-counturl="http://simyin.github.com/blog/2012/10/05/grails-deletes-plugin-classes-on-grails-clean/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/09/14/how-to-use-octopress-with-multiple-users-or-on-multiple-machines/" title="Previous Post:
+        How to Use Octopress With Multiple Users or on Multiple Machines">&laquo; How to Use Octopress With Multiple Users or on Multiple Machines</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
 
 <aside class="sidebar-nav span3">
